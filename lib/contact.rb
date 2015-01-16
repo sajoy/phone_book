@@ -11,7 +11,6 @@ class Contact
     @numbers.push(initial_number)
   end
 
-
   define_method(:numbers) do
     @numbers
   end

@@ -5,10 +5,9 @@ require('phone')
 
 describe(Contact) do
 
- before() do
-   Contact.clear()
- end
-
+   before() do
+     Contact.clear()
+   end
 
   describe("#name") do
     it("returns the name of a contact") do
@@ -71,7 +70,6 @@ describe(Contact) do
       Contact.clear()
       expect(Contact.all()).to(eq([]))
     end
-
   end
 
 

@@ -4,15 +4,40 @@ require('contact')
 
 describe(Phone) do
 
-  describe("#type") do
-    it("returns the type of phone") do
-      new_contact = Contact.new({:name => "Jenny", :number => "5558675309"})
-      new_contact.save()
-      new_number = Phone.new({:type => "home", :number => ""})
-
+  describe("#initialize") do
+    it("allows only one attribute to be added") do
+      new_number = Phone.new({:type => "home"})
+      newer_number = Phone.new({:number => "9876543210"})
+      expect(new_number.type()).to(eq("home"))
+      expect(newer_number.number()).to(eq("9876543210"))
     end
   end
 
+  describe("#type") do
+    it("returns the type of phone") do
+      new_number = Phone.new({:type => "home", :number => "5552138866"})
+      new_contact = Contact.new({:name => "Ernie", :number => "9990123455"})
+      expect(new_number.type()).to(eq("home"))
+      expect(new_contact.initial_number().type()).to(eq(nil))
+    end
+  end
+
+  describe("#edit") do
+    it("allows you to add a type to a Phone without one") do
+      new_number = Phone.new({:number => "9876543210"})
+      new_number = new_number.edit({:type => "work"})
+      expect(new_number.type()).to(eq("work"))
+    end
+
+    it("allows you to add a number to a Phone without one") do
+      new_number = Phone.new({:type => "cell"})
+      new_number = new_number.edit({:number => "5403717951"})
+      expect(new_number.number()).to(eq("5403717951"))
+    end
+
+    
+
+  end
 
 
 end
