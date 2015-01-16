@@ -24,6 +24,16 @@ describe(Contact) do
     end
   end
 
+  describe(".search") do
+    it("will return a Contact give it's unique id") do
+      new_contact = Contact.new({:name => "Sarah", :number => "5403717951"})
+      new_contact2 = Contact.new({:name => "Mother", :number => "5408997951"})
+      new_contact.save()
+      new_contact2.save()
+      expect(Contact.search("M7951")).to(eq(new_contact2))
+    end
+  end
+
   describe("#initial_number") do
     it("will return the inital number entered when a contact is created as a Phone object") do
       new_contact = Contact.new({:name => "Sarah", :number => "5403717951"})

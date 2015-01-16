@@ -1,24 +1,61 @@
-<div class="sidebar col-md-3 col-md-offset-2">
-<form action="/add_number" method="POST">
-  <h1>Add Number</h1>
-  <div class="form-group">
-    <label for="number">New Number:</label>
-    <input class="form-control" id="number" name="number">
+<div class="col-md-3 col-md-offset-2">
+  <div class="side row">
+    <div class="col-sm-12">
+      <h1><a href="/">HOME</a></h1>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="type">Type:</label>
-    <input class="form-control" id="type" name="type">
+
+  <div class="side row">
+    <div class="col-sm-12">
+      <form action="/add_number" method="POST">
+        <h1>Add Number</h1>
+        <div class="form-group">
+          <label for="number">New Number:</label>
+          <input class="form-control" id="number" name="number">
+        </div>
+        <div class="form-group">
+          <label for="type">Type:</label>
+          <input class="form-control" id="type" name="type">
+        </div>
+        <input type="hidden" name="id" value="<%= @id %>">
+        <button class="btn btn-primary" type="submit">add</button>
+      </form>
+    </div>
   </div>
-  <input type="hidden" value="<%= @name %>">
-  <button class="btn btn-primary" type="submit">add</button>
-</form>
+
+  <!-- <div class="row">
+    <div class="col-sm-12">
+      <form action="/edit_number" method="POST">
+        <h1>Edit a Number</h1>
+        <p>Enter both the number and type to replace an existing number.</p>
+        <div class="form-group">
+          <label for="number">Number:</label>
+          <input class="form-control" id="number" name="number">
+        </div>
+        <div class="form-group">
+          <label for="type">Type:</label>
+          <input class="form-control" id="type" name="type">
+        </div>
+        <input type="hidden" name="id" value="<%= @id %>">
+        <button class="btn btn-primary" type="submit">edit</button>
+      </form>
+    </div>
+  </div> -->
+
+  <!-- <div class="row">
+    <div class="col-sm-3">
+      delete contact erb(:index)
+    </div>
+  </div> -->
+
+
 </div>
 
 <div class="main col-md-6">
   <h1><%= @name %> </h1>
   <ul>
-    <% @contact_list.each() do |contact| %>
-    <li><a href="/contact/<%= contact.name() %>"> <%= contact.name() %> </a></li>
+    <% @numbers.each() do |number| %>
+    <li><i><%= number.type() %> </i><%= number.number() %> </li>
     <% end %>
   </ul>
 

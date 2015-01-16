@@ -11,7 +11,6 @@ get('/') do
   erb(:index)
 end
 
-
 post('/add_contact') do
   name = params['contact_name']
   number = params['contact_number']
@@ -20,19 +19,34 @@ post('/add_contact') do
   redirect('/')
 end
 
-
 get('/contact/:id') do
-  @name = params[:id]
-  
-  @numbers =
+  @id = params[:id]
+  @contact = Contact.search(@id)
+  @name = @contact.name()
+  @numbers = @contact.numbers()
   erb(:contact)
 end
 
 post('/add_number') do
+  @id = params[:id]
+  @contact = Contact.search(params['id'])
   type = params['type']
   number = params['number']
-  new_number = Contact.new({:type => type, :number => number})
-  new_number.save()
-  name = params['name']
-  redirect('/contact/name')
+  new_number = Phone.new({:type => type, :number => number})
+  @contact.add_phone(new_number)
+  @name = @contact.name()
+  @numbers = @contact.numbers()
+  erb(:contact)
+end
+
+post('/edit_number') do
+  @id = params[:id]
+  @contact = Contact.search(params['id'])
+  type = params['type']
+  number = params['number']
+  new_number = Phone.new({:type => type, :number => number})
+  @contact.add_phone(new_number)
+  @name = @contact.name()
+  @numbers = @contact.numbers()
+  erb(:contact)
 end

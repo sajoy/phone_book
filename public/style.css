@@ -1,5 +1,6 @@
 body{
   margin: 0 auto;
+  font-family: 'Shadows Into Light', cursive;
 }
 
 ul {
@@ -7,17 +8,31 @@ ul {
 
 }
 
-.sidebar{
+.side{
   background-color: rgba(0,100,200,.5);
   margin-top: 50px;
-  height: 300px;
   border-top-left-radius:50px;
   border-bottom-left-radius:50px;
   padding: 10px 10px 10px 10px;
+
 }
+
+
+form {
+  text-align: right;
+}
+
+.main h1{
+  font-size: 4em;
+}
+
+.main h2{font-size: 3em;}
 
 .main{
   background-color: rgba(0,100,200,.3);
   height: 100vh;
   padding: 10px;
+  text-align: center;
+  font-size: 3em;
+
 }

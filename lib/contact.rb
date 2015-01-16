@@ -24,6 +24,16 @@ class Contact
 
   end
 
+  define_singleton_method(:search) do |id|
+    found = nil
+    @@all_contacts.each() do |contact|
+      if contact.id().==(id)
+        found = contact
+      end
+    end
+    found
+  end
+
   define_method(:numbers) do
     @numbers
   end
