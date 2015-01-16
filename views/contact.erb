@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <!-- <div class="row">
+  <!-- <div class="side row">
     <div class="col-sm-12">
       <form action="/edit_number" method="POST">
         <h1>Edit a Number</h1>
@@ -42,11 +42,16 @@
     </div>
   </div> -->
 
-  <!-- <div class="row">
-    <div class="col-sm-3">
-      delete contact erb(:index)
+  <div class="side row">
+    <div class="col-sm-12">
+      <form action="/delete_contact" method="POST">
+        <h1>Delete Contact</h1>
+        <p>This will delete the contact from your list!</p>
+        <input type="hidden" name="id" value="<%= @id %>">
+        <button class="btn btn-danger" type="submit">delete</button>
+      </form>
     </div>
-  </div> -->
+  </div>
 
 
 </div>
