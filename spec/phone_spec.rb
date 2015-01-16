@@ -13,6 +13,13 @@ describe(Phone) do
     end
   end
 
+  describe("#number") do
+    it("returns the phone's number") do
+      new_number = Phone.new({:type => "work", :number => "5555431234"})
+      expect(new_number.number()).to(eq("5555431234"))
+    end
+  end
+
   describe("#type") do
     it("returns the type of phone") do
       new_number = Phone.new({:type => "home", :number => "5552138866"})

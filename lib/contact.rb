@@ -31,10 +31,6 @@ class Contact
     Contact.new(old.merge(edit))
   end
 
-  define_method(:save) do
-    @@all_contacts.push(self)
-  end
-
   define_method(:delete_phone) do |phone|
     @numbers.each() do |number|
       if number.type().==(phone.type()).&(number.number().==(phone.number()))
@@ -49,6 +45,10 @@ class Contact
         @@all_contacts.delete(contact)
       end
     end
+  end
+
+  define_method(:save) do
+    @@all_contacts.push(self)
   end
 
   define_singleton_method(:all) do
