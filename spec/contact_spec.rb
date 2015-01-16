@@ -1,5 +1,6 @@
 require('rspec')
 require('contact')
+require('phone')
 
 
 describe(Contact) do
@@ -16,10 +17,28 @@ describe(Contact) do
     end
   end
 
-  describe("#number") do
-    it("returns the number of a contact") do
+  describe("#initial_number") do
+    it("will return the inital number entered when a contact is created as a Phone object") do
+      new_contact = Contact.new({:name => "Sarah", :number => "5403717951"})
+      expect(new_contact.initial_number()).to(be_a(Phone))
+    end
+  end
+
+  describe("#numbers") do
+    it("returns the numbers of a contact") do
       new_contact = Contact.new({:name => "Elmo", :number => "1235555432"})
-      expect(new_contact.number()).to(eq("1235555432"))
+      new_phone = Phone.new({:number => "0009998888", :type => "work"})
+      new_contact.add_phone(new_phone)
+      expect(new_contact.numbers()).to(eq([new_contact.initial_number(), new_phone]))
+    end
+  end
+
+  describe("#add_phone") do
+    it("adds a phone to a contact's array of nummbers") do
+      new_contact = Contact.new({:name => "Elmo", :number => "1235555432"})
+      new_phone = Phone.new({:number => "0009998888", :type => "work"})
+      new_contact.add_phone(new_phone)
+      expect(new_contact.numbers()).to(eq([new_contact.initial_number(), new_phone]))
     end
   end
 

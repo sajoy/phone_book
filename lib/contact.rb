@@ -2,11 +2,22 @@ class Contact
 
   @@all_contacts = []
 
-  attr_reader(:name, :number)
+  attr_reader(:name, :initial_number)
 
   define_method(:initialize) do |attributes|
     @name = attributes[:name]
-    @number = attributes[:number]
+    @numbers = []
+    @initial_number = Phone.new({:number => attributes[:number]})
+    @numbers.push(initial_number)
+  end
+
+
+  define_method(:numbers) do
+    @numbers
+  end
+
+  define_method(:add_phone) do |phone|
+    @numbers.push(phone)
   end
 
   define_method(:save) do
