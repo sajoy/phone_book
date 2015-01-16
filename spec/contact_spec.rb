@@ -2,12 +2,11 @@ require('rspec')
 require('contact')
 require('phone')
 
-
 describe(Contact) do
 
-   before() do
-     Contact.clear()
-   end
+  before() do
+   Contact.clear()
+  end
 
   describe("#name") do
     it("returns the name of a contact") do
@@ -38,6 +37,55 @@ describe(Contact) do
       new_phone = Phone.new({:number => "0009998888", :type => "work"})
       new_contact.add_phone(new_phone)
       expect(new_contact.numbers()).to(eq([new_contact.initial_number(), new_phone]))
+    end
+  end
+
+  describe("#edit") do
+    it("allows you to add a name to a number without one") do
+      new_contact = Contact.new({:number => "9876543210"})
+      new_contact = new_contact.edit({:name => "The Muffin Man"})
+      expect(new_contact.name()).to(eq("The Muffin Man"))
+    end
+
+    it("allows you to add a number to a name without one") do
+      new_contact = Contact.new({:name => "Mom"})
+      new_contact = new_contact.edit({:number => "5403717951"})
+      expect(new_contact.numbers()).to(eq([new_contact.initial_number()]))
+    end
+
+    it("won't overwrite an exisiting attribute with nil") do
+      new_contact = Contact.new({:name => "Mom", :number => "5551234321"})
+      new_contact = new_contact.edit({:number => "5403717951"})
+      expect(new_contact.numbers()).to(eq([new_contact.initial_number()]))
+      expect(new_contact.name()).to(eq("Mom"))
+    end
+
+    it("will completely overwrite old attributes if both are present") do
+      new_contact = Contact.new({:name => "Dad", :number => "5551234321"})
+      new_contact = new_contact.edit({:name => "Mickey Mouse", :number => "5403717951"})
+      expect(new_contact.numbers()).to(eq([new_contact.initial_number()]))
+      expect(new_contact.name()).to(eq("Mickey Mouse"))
+    end
+  end
+
+  describe("#delete_phone") do
+    it("will remove a Phone from a contact") do
+      new_contact = Contact.new({:name => "Tarzan", :number => "1235550987"})
+      new_phone = Phone.new({:type => "cell", :number => "9991112345"})
+      new_contact.add_phone(new_phone)
+      new_contact.delete_phone(new_contact.initial_number())
+      expect(new_contact.numbers()).to(eq([new_phone]))
+    end
+  end
+
+  describe("#delete_contact") do
+    it("will remove a contact from the array of all contacts") do
+      new_contact = Contact.new({:name => "Random Dude", :number => "5555431209"})
+      new_contact2 = Contact.new({:name => "Dave", :number =>"8047867890"})
+      new_contact.save()
+      new_contact2.save()
+      new_contact.delete_contact()
+      expect(Contact.all()).to(eq([new_contact2]))
     end
   end
 

@@ -19,8 +19,36 @@ class Contact
     @numbers.push(phone)
   end
 
+  define_method(:edit) do |attributes|
+    old = {:number => numbers(), :name => name()}
+    if attributes[:number].==(nil)
+      edit = {:name => attributes[:name]}
+    elsif attributes[:name].==(nil)
+      edit = {:number => attributes[:number]}
+    else
+      edit = {:name => attributes[:name], :number => attributes[:number]}
+    end
+    Contact.new(old.merge(edit))
+  end
+
   define_method(:save) do
     @@all_contacts.push(self)
+  end
+
+  define_method(:delete_phone) do |phone|
+    @numbers.each() do |number|
+      if number.type().==(phone.type()).&(number.number().==(phone.number()))
+        @numbers.delete(number)
+      end
+    end
+  end
+
+  define_method(:delete_contact) do
+    @@all_contacts.each() do |contact|
+      if contact.name().==(name()).&(contact.numbers().==(numbers()))
+        @@all_contacts.delete(contact)
+      end
+    end
   end
 
   define_singleton_method(:all) do

@@ -35,7 +35,19 @@ describe(Phone) do
       expect(new_number.number()).to(eq("5403717951"))
     end
 
-    
+    it("won't overwrite an exisiting attribute with nil") do
+      new_number = Phone.new({:type => "cell", :number => "5551234321"})
+      new_number = new_number.edit({:number => "5403717951"})
+      expect(new_number.number()).to(eq("5403717951"))
+      expect(new_number.type()).to(eq("cell"))
+    end
+
+    it("will completely overwrite old attributes if both are present") do
+      new_number = Phone.new({:type => "cell", :number => "5551234321"})
+      new_number = new_number.edit({:type => "home", :number => "5403717951"})
+      expect(new_number.number()).to(eq("5403717951"))
+      expect(new_number.type()).to(eq("home"))
+    end
 
   end
 

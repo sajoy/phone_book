@@ -9,7 +9,13 @@ class Phone
 
   define_method(:edit) do |attributes|
     old = {:number => number(), :type => type()}
-    Phone.new(old.merge({:type => attributes[:type], :number => attributes[:number]}))
+    if attributes[:number].==(nil)
+      edit = {:type => attributes[:type]}
+    elsif attributes[:type].==(nil)
+      edit = {:number => attributes[:number]}
+    else
+      edit = {:type => attributes[:type], :number => attributes[:number]}
+    end
+    Phone.new(old.merge(edit))
   end
-
 end
