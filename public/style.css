@@ -1,0 +1,23 @@
+body{
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none;
+
+}
+
+.sidebar{
+  background-color: rgba(0,100,200,.5);
+  margin-top: 50px;
+  height: 300px;
+  border-top-left-radius:50px;
+  border-bottom-left-radius:50px;
+  padding: 10px 10px 10px 10px;
+}
+
+.main{
+  background-color: rgba(0,100,200,.3);
+  height: 100vh;
+  padding: 10px;
+}

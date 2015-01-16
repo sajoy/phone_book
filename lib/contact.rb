@@ -11,6 +11,19 @@ class Contact
     @numbers.push(initial_number)
   end
 
+  define_method(:id) do
+    letter = name().split("")
+    numbers = initial_number().number().split("").reverse()
+
+    6.times() do
+      numbers.pop()
+    end
+    numbers = numbers.reverse()
+    numbers.insert(0, letter.at(0))
+    numbers.join()
+
+  end
+
   define_method(:numbers) do
     @numbers
   end
