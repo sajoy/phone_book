@@ -46,14 +46,18 @@ post('/delete_contact') do
   redirect('/')
 end
 
-# post('/edit_number') do
-#   @id = params[:id]
-#   @contact = Contact.search(params['id'])
-#   type = params['type']
-#   number = params['number']
-#   new_number = Phone.new({:type => type, :number => number})
-#   @contact.add_phone(new_number)
-#   @name = @contact.name()
-#   @numbers = @contact.numbers()
-#   erb(:contact)
-# end
+get('/number/:number_id/:contact_id') do
+  @number_id = params[:number_id]
+  @contact = Contact.search(params[:contact_id])
+  @number_to_edit = @contact.search_numbers(@number_id)
+  @name = @contact.name()
+  erb(:number)
+end
+
+
+post('/delete_number') do
+  @number_id = params[:id]
+  @contact = Contact.search(params['id'])
+  @contact.delete_contact()
+  redirect('/')
+end

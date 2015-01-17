@@ -23,25 +23,6 @@
     </div>
   </div>
 
-  <!-- <div class="side row">
-    <div class="col-sm-12">
-      <form action="/edit_number" method="POST">
-        <h1>Edit a Number</h1>
-        <p>Enter both the number and type to replace an existing number.</p>
-        <div class="form-group">
-          <label for="number">Number:</label>
-          <input class="form-control" id="number" name="number">
-        </div>
-        <div class="form-group">
-          <label for="type">Type:</label>
-          <input class="form-control" id="type" name="type">
-        </div>
-        <input type="hidden" name="id" value="<%= @id %>">
-        <button class="btn btn-primary" type="submit">edit</button>
-      </form>
-    </div>
-  </div> -->
-
   <div class="side row">
     <div class="col-sm-12">
       <form action="/delete_contact" method="POST">
@@ -60,7 +41,7 @@
   <h1><%= @name %> </h1>
   <ul>
     <% @numbers.each() do |number| %>
-    <li><i><%= number.type() %> </i><%= number.number() %> </li>
+    <li><i><%= number.type() %> </i><%= number.number() %> <a href="/number/<%= number.id() %>/<%= @id %>">[edit]</a> </li>
     <% end %>
   </ul>
 

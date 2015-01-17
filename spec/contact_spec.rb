@@ -24,6 +24,15 @@ describe(Contact) do
     end
   end
 
+  describe("#search_numbers") do
+    it("will return a contact's number by a given id") do
+      new_contact = Contact.new({:name => "Sarah", :number => "5403717951"})
+      new_phone = Phone.new({:number => "0009998888", :type => "work"})
+      new_contact.add_phone(new_phone)
+      expect(new_contact.search_numbers(new_phone.id())).to(eq(new_phone))
+    end
+  end
+
   describe(".search") do
     it("will return a Contact give it's unique id") do
       new_contact = Contact.new({:name => "Sarah", :number => "5403717951"})

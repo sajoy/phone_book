@@ -13,6 +13,14 @@ describe(Phone) do
     end
   end
 
+  describe("#id") do
+    it("will return a unique id number") do
+      new_number = Phone.new({:type => "home", :number => "9876543210"})
+      newer_number = Phone.new({:type => "cell", :number => "5008001234"})
+      expect(new_number.id()).to(eq("h3210"))
+    end
+  end
+
   describe("#number") do
     it("returns the phone's number") do
       new_number = Phone.new({:type => "work", :number => "5555431234"})

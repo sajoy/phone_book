@@ -1,0 +1,48 @@
+<div class="col-md-3 col-md-offset-2">
+  <div class="side row">
+    <div class="col-sm-12">
+      <h1><a href="/">HOME</a> > <a href="/contact/<%= @contact.id() %>"><%= @name %></a></h1>
+    </div>
+  </div>
+
+
+  <div class="side row">
+    <div class="col-sm-12">
+      <form action="/edit_number" method="POST">
+        <h1>Edit a Number</h1>
+        <p>Enter both the number and type to edit or replace an existing number.</p>
+        <div class="form-group">
+          <label for="number">Number:</label>
+          <input class="form-control" id="number" name="number">
+        </div>
+        <div class="form-group">
+          <label for="type">Type:</label>
+          <input class="form-control" id="type" name="type">
+        </div>
+        <input type="hidden" name="id" value="<%= @number_id %>">
+        <button class="btn btn-primary" type="submit">edit</button>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="side row">
+    <div class="col-sm-12">
+      <form action="/delete_number" method="POST">
+        <h1>Delete Number</h1>
+        <p>This will delete the number from your contact!</p>
+        <input type="hidden" name="id" value="<%= @number_id %>">
+        <button class="btn btn-danger" type="submit">delete</button>
+      </form>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="main col-md-6">
+<p> Currently editing:</p>
+  <i><%= @number_to_edit.type() %></i> <%= @number_to_edit.number() %>
+
+
+</div>
