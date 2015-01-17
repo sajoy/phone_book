@@ -19,7 +19,8 @@
           <label for="type">Type:</label>
           <input class="form-control" id="type" name="type">
         </div>
-        <input type="hidden" name="id" value="<%= @number_id %>">
+        <input type="hidden" name="number_id" value="<%= @number_id %>">
+        <input type="hidden" name="contact_id" value="<%= @contact.id() %>">
         <button class="btn btn-primary" type="submit">edit</button>
       </form>
     </div>

@@ -64,3 +64,16 @@ post('/delete_number') do
   @numbers = @contact.numbers()
   erb(:contact)
 end
+
+post('/edit_number') do
+  @number_id = params[:number_id]
+  @contact_id = params[:contact_id]
+  @contact = Contact.search(@contact_id)
+  @number_to_edit = @contact.search_numbers(@number_id)
+  type = params['type']
+  number = params['number']
+  @number_to_edit = @number_to_edit.edit({:type => type, :number => number})
+  @name = @contact.name()
+  @numbers = @contact.numbers()
+  erb(:number)
+end

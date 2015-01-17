@@ -34,7 +34,7 @@ If you are having issues, please let me know.
 
 ## Bugs
 
-Known bugs include: lack of form verification, editing and deleting of individual numbers does not work.
+Known bugs include: lack of form verification, editing individual numbers is not permanent. 
 If you discover any bugs, feel free to create an issue on GitHub. Please add as much information as possible to help me fixing the possible bug. I also encourage you to help even more by forking and sending me a pull request.
 
 ## License
