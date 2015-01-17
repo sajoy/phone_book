@@ -54,10 +54,13 @@ get('/number/:number_id/:contact_id') do
   erb(:number)
 end
 
-
 post('/delete_number') do
-  @number_id = params[:id]
-  @contact = Contact.search(params['id'])
-  @contact.delete_contact()
-  redirect('/')
+  @ids = params[:id].split(", ")
+  @number_id = @ids.at(0)
+  @id = @ids.at(1)
+  @contact = Contact.search(@id)
+  @number_to_delete = @contact.search_numbers(@number_id)
+  @contact.delete_phone(@number_to_delete)
+  @numbers = @contact.numbers()
+  erb(:contact)
 end

@@ -38,7 +38,7 @@
 </div>
 
 <div class="main col-md-6">
-  <h1><%= @name %> </h1>
+  <h1><%= @contact.name() %> </h1>
   <ul>
     <% @numbers.each() do |number| %>
     <li><i><%= number.type() %> </i><%= number.number() %> <a href="/number/<%= number.id() %>/<%= @id %>">[edit]</a> </li>
