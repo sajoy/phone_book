@@ -30,8 +30,10 @@ post('/add_number') do
   @contact = Contact.search(params['id'])
   type = params['type']
   number = params['number']
-  new_number = Phone.new({:type => type, :number => number})
-  @contact.add_phone(new_number)
+  if type.!=("").&(number.!=(""))
+    new_number = Phone.new({:type => type, :number => number})
+    @contact.add_phone(new_number)
+  end
   @name = @contact.name()
   @numbers = @contact.numbers()
   erb(:contact)

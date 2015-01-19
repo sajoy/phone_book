@@ -85,7 +85,7 @@ class Contact
   end
 
   define_singleton_method(:all) do
-    @@all_contacts =  @@all_contacts.sort_by{|contact| contact.name }
+    @@all_contacts =  @@all_contacts.sort_by{ |contact| contact.name() }
   end
 
   define_singleton_method(:clear) do
