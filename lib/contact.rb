@@ -8,7 +8,7 @@ class Contact
     @name = attributes[:name]
     @numbers = []
     @initial_number = Phone.new({:number => attributes[:number]})
-    @numbers.push(initial_number)
+    @numbers.push(@initial_number)
   end
 
   define_method(:id) do

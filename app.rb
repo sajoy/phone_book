@@ -55,10 +55,9 @@ get('/number/:number_id/:contact_id') do
 end
 
 post('/delete_number') do
-  @ids = params[:id].split(", ")
-  @number_id = @ids.at(0)
-  @id = @ids.at(1)
-  @contact = Contact.search(@id)
+  @number_id = params[:number_id]
+  @contact_id = params[:contact_id]
+  @contact = Contact.search(@contact_id)
   @number_to_delete = @contact.search_numbers(@number_id)
   @contact.delete_phone(@number_to_delete)
   @numbers = @contact.numbers()
