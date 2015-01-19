@@ -22,7 +22,6 @@ class Phone
     number = number.reverse()
     number.insert(0, type.at(0))
     number.join()
-
   end
 
   define_method(:edit) do |attributes|

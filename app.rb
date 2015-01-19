@@ -4,8 +4,6 @@ also_reload('/lib/**/*.rb')
 require('./lib/contact')
 require('./lib/phone')
 
-
-
 get('/') do
   @contact_list = Contact.all()
   erb(:index)
@@ -61,6 +59,7 @@ post('/delete_number') do
   @number_to_delete = @contact.search_numbers(@number_id)
   @contact.delete_phone(@number_to_delete)
   @numbers = @contact.numbers()
+  @id = @contact_id
   erb(:contact)
 end
 
@@ -71,7 +70,10 @@ post('/edit_number') do
   @number_to_edit = @contact.search_numbers(@number_id)
   type = params['type']
   number = params['number']
+  @old_number_to_delete = @number_to_edit
   @number_to_edit = @number_to_edit.edit({:type => type, :number => number})
+  @contact.delete_phone(@old_number_to_delete)
+  @contact.add_phone(@number_to_edit)
   @name = @contact.name()
   @numbers = @contact.numbers()
   erb(:number)
